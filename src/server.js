@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('tiny'));
 
- 
+ //routes
 app.use('/api/v1', categoryRoutes);
 app.use('/api/v1', productRoutes);
 app.use('/api/v1', customerRoutes);
@@ -31,7 +31,7 @@ app.use('/api/v1', orderItemsRoutes);
 app.use('/api/v1', paymentsRoutes);
 app.use('/api/v1', contractRoutes); 
 
-// HOME 
+// tekshirish
 app.get('/', (req, res) => {
     res.send('Serverdan salom hammaga!');
 });

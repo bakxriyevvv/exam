@@ -1,4 +1,5 @@
 // muddati otb ketgan tovarlarni chiqazish
+
 app.get('/overdue-payments', async (req, res) => {
     try {
         const overduePayments = await fetchData(`

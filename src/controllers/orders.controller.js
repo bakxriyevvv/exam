@@ -1,5 +1,5 @@
 import { fetchData } from '../database/postgres.js';
-
+// barcha orderni olish
 export async function getAllOrders(req, res) {
     try {
         const orders = await fetchData("SELECT * FROM orders ORDER BY ID;");
@@ -15,6 +15,7 @@ export async function getAllOrders(req, res) {
         });
     }
 }
+// orderlarni id boyicha olish 
 export async function getOrderById(req, res) {
     try {
         const { id } = req.params;
@@ -37,7 +38,7 @@ export async function getOrderById(req, res) {
         });
     }
 }
-
+// order yaratish
 export async function createOrder(req, res) {
     try {
         const {created_at, customer_id, order_status} = req.body;
@@ -58,6 +59,7 @@ export async function createOrder(req, res) {
         });
     }
 }
+// orderni yangilash
 export async function updateOrder(req, res) {
     try {
         const { created_at, customer_id, order_status } = req.body;
@@ -87,7 +89,7 @@ export async function updateOrder(req, res) {
 }
 
 
-
+// orderni ochirish
 export async function deleteOrder(req, res) {
     try {
         const { id } = req.params;

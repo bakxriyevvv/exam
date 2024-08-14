@@ -1,5 +1,5 @@
 import { fetchData } from '../database/postgres.js';
-
+// barcha productlarni olish
 export async function getAllProducts(req, res) {
     try {
         const products = await fetchData("SELECT * FROM products ORDER BY ID;");
@@ -15,7 +15,7 @@ export async function getAllProducts(req, res) {
         });
     }
 }
-
+// id boyicha olish
 export async function getProductById(req, res) {
     try {
         const { id } = req.params;
@@ -38,7 +38,7 @@ export async function getProductById(req, res) {
         });
     }
 }
-
+// yaratish productni 
 export async function createProduct(req, res) {
     try {
         const { title, description, price, rating, category_id, count, image_url } = req.body;
@@ -59,6 +59,7 @@ export async function createProduct(req, res) {
         });
     }
 }
+// yangilash productni 
 export async function updateProduct(req, res) {
     try {
         const { title, description, price, rating, category_id, count, image_url } = req.body;
@@ -87,6 +88,7 @@ export async function updateProduct(req, res) {
     }
 }
 
+// delete product 
 
 export async function deleteProduct(req, res) {
     try {

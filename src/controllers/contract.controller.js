@@ -1,5 +1,5 @@
 import { fetchData } from '../database/postgres.js';
-
+// barcha contactlarni olish
 export async function getAllContracts(req, res) {
     try {
         const contracts = await fetchData("SELECT * FROM contract ORDER BY id;");
@@ -14,7 +14,7 @@ export async function getAllContracts(req, res) {
         });
     }
 }
-
+// get contract id boyicha
 export async function getContractById(req, res) {
     try {
         const { id } = req.params;
@@ -37,7 +37,7 @@ export async function getContractById(req, res) {
         });
     }
 }
-
+// contract yaratish 
 export async function createContract(req, res) {
     try {
         const { order_id, customer_id, contract_date, monthly_payment, contract_type_id, contract_status, starting_payment_perc } = req.body;
@@ -58,7 +58,7 @@ export async function createContract(req, res) {
         });
     }
 }
-
+// contract yangilash
 export async function updateContract(req, res) {
     try {
         const { order_id, customer_id, contract_date, monthly_payment, contract_type_id, contract_status, starting_payment_perc } = req.body;
@@ -86,7 +86,7 @@ export async function updateContract(req, res) {
         });
     }
 }
-
+// contractni ochirish
 export async function deleteContract(req, res) {
     try {
         const { id } = req.params;

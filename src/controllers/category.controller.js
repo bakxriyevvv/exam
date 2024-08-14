@@ -1,5 +1,5 @@
 import { fetchData } from '../database/postgres.js';
-
+// barcha kategoriyalarni get qilish
 export async function getAllCategory(req, res) {
         const parentCategories = await fetchData(
             "SELECT * FROM category WHERE category_id is NULL;"
@@ -18,7 +18,7 @@ export async function getAllCategory(req, res) {
             data: parentCategories
         });
     }
-
+//categoriya yaratish
 export async function createCategory(req, res) {
     try {
         const { name, image_url ,category_id } = req.body;
@@ -39,7 +39,7 @@ export async function createCategory(req, res) {
         });
     }
 }
-
+// categoriyani update qilish
 export async function updateCategory(req, res) {
     try {
         const { name, category_id } = req.body;
@@ -67,7 +67,7 @@ export async function updateCategory(req, res) {
         });
     }
 }
-
+// categoriyani ochirish
 export async function deleteCategory(req, res) {
     try {
         const { id } = req.params;

@@ -1,6 +1,6 @@
 import { fetchData } from '../database/postgres.js';
 
-
+// barcha customerlarni olish
 export async function getAllCustomers(req, res) {
         const customers = await fetchData("SELECT * FROM customers;");
         res.send({
@@ -8,7 +8,7 @@ export async function getAllCustomers(req, res) {
             data: customers
         });
 }
-
+// get customer id boyicha
 export async function getCustomerById(req, res) {
         const { id } = req.params;
         const customer = await fetchData("SELECT * FROM customers WHERE id = $1;", id);
@@ -22,7 +22,7 @@ export async function getCustomerById(req, res) {
             data: customer
         });
 }
-
+// customer yaratish
 export async function createCustomer(req, res) {
         const { full_name, email,phone_number,password,image_url } = req.body;
         const newCustomer = await fetchData(
@@ -35,7 +35,7 @@ export async function createCustomer(req, res) {
         });
 }
 
-
+// cutomerni yangilash
 export async function updateCustomer(req, res) {
         const {  full_name, email,phone_number,password,image_url } = req.body;
         const { id } = req.params;
@@ -53,7 +53,7 @@ export async function updateCustomer(req, res) {
             data: updatedCustomer
         });
 }
-
+// customerni ochirish
 export async function deleteCustomer(req, res) {
         const { id } = req.params;
         const deletedCustomer = await fetchData(

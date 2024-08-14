@@ -1,3 +1,5 @@
+//table yaratish
+
 CREATE TABLE category(
   id SERIAL PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
@@ -6,6 +8,8 @@ CREATE TABLE category(
 
   FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
 );
+
+//table yaratish
 
 CREATE TABLE products(
   id SERIAL PRIMARY KEY,
@@ -20,6 +24,7 @@ CREATE TABLE products(
   FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
 );
 
+//table yaratish
 CREATE TABLE customers (
   id SERIAL PRIMARY KEY,
   full_name VARCHAR(255) NOT NULL,
@@ -31,6 +36,7 @@ CREATE TABLE customers (
   UNIQUE(email, phone_number)
 );
 
+//table yaratish
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY,
   created_at TIMESTAMP NOT NULL,
@@ -40,6 +46,7 @@ CREATE TABLE orders (
   FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE
 );
 
+//table yaratish
 CREATE TABLE order_items (
   id SERIAL PRIMARY KEY,
   order_id INT,
@@ -51,6 +58,7 @@ CREATE TABLE order_items (
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
+//table yaratish
 CREATE TABLE payments(
   id SERIAL PRIMARY KEY,
   created_at TIMESTAMP NOT NULL,
@@ -61,6 +69,7 @@ CREATE TABLE payments(
   FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE
 )
 
+//table yaratish
 CREATE TABLE contract (
     id SERIAL PRIMARY KEY,
     order_id INT NOT NULL,
@@ -75,6 +84,9 @@ CREATE TABLE contract (
     FOREIGN KEY (customer_id) REFERENCES customers(id) ON DELETE CASCADE,
     FOREIGN KEY (contract_type_id) REFERENCES contract_type(id) ON DELETE CASCADE
 );
+
+//foizlarni hisoblash uchun function 
+
 CREATE OR REPLACE FUNCTION percentageOfProduct(price NUMERIC, percentage NUMERIC)
 RETURNS NUMERIC 
 LANGUAGE plpgsql 
@@ -84,7 +96,10 @@ BEGIN
 END;
 $$;
 
+//uni chaqirish 
 SELECT percentageOfProduct(1000, 25) AS result;
+
+______________________________________________________________________
 
 CREATE OR REPLACE FUNCTION updatePrice()
 RETURNS TRIGGER AS $$
@@ -96,7 +111,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
+// contract uchun trigger 
 CREATE TRIGGER update_product_price_trigger
 AFTER INSERT OR UPDATE ON contracts
 FOR EACH ROW
@@ -118,6 +133,8 @@ JOIN products p ON p.id = oi.product_id
 WHERE current_date > cn.contract_date + ct.duration;
 
 
+
+// malumotlarni insert qilishh /////////////////////////////////
 
 
 INSERT INTO category (name, image_url, category_id) VALUES 

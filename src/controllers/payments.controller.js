@@ -1,5 +1,5 @@
 import { fetchData } from '../database/postgres.js';
-
+// barch tolovlarni olish
 export async function getAllPayments(req, res) {
     try {
         const payments = await fetchData("SELECT * FROM payments;");
@@ -15,7 +15,7 @@ export async function getAllPayments(req, res) {
         });
     }
 }
-
+// tolovlarni id boyicha olish
 export async function getPaymentById(req, res) {
     try {
         const { id } = req.params;
@@ -38,7 +38,7 @@ export async function getPaymentById(req, res) {
         });
     }
 }
-
+// tolov yaratish
 export async function createPayment(req, res) {
     try {
         const { order_id, amount, payment_method } = req.body;
@@ -59,7 +59,7 @@ export async function createPayment(req, res) {
         });
     }
 }
-
+// tolovni yangilash
 export async function updatePayment(req, res) {
     try {
         const { order_id, amount, payment_method } = req.body;
@@ -88,7 +88,7 @@ export async function updatePayment(req, res) {
     }
 }
 
-
+// tolovni ochirish
 export async function deletePayment(req, res) {
     try {
         const { id } = req.params;
